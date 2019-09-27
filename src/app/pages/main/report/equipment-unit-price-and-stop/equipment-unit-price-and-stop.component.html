@@ -1,0 +1,39 @@
+<div>
+    <!-- <form nz-form [formGroup]="validateForm" (ngSubmit)="query()" nzLayout="horizontal">
+      <nz-form-item  nzFlex>
+          <nz-form-label nzFor="yearMonth" nzSpan="3" nzRequired>月份</nz-form-label>
+        <nz-form-control nzSpan="5">
+          <nz-month-picker [(ngModel)]="yearMonth" name="yearMonth" nzPlaceHolder="选择月份"></nz-month-picker>
+            <button nz-button nzType="primary">查询</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form> -->
+    <div class="query">
+        <label for="">月份</label>
+        <input nz-input [(ngModel)]="yearMonth" id="yearMonth" name="yearMonth" placeholder="">
+        <button nz-button nzType="primary" (click)="query()">查询</button>
+    </div>
+
+    <nz-table #basicTable [nzData]="listOfData">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.name }}</td>
+                <td>{{ data.age }}</td>
+                <td>{{ data.address }}</td>
+                <td>
+                  <a>Action 一 {{ data.name }}</a>
+                  <nz-divider nzType="vertical"></nz-divider>
+                  <a>Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+</div>

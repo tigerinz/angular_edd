@@ -1,0 +1,20 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="saveDbInfo()" nzLayout="horizontal">
+  <nz-form-item  nzFlex>
+      <nz-form-label nzFor="" nzSpan="3" nzRequired>服务器</nz-form-label>
+    <nz-form-control nzSpan="5" nzHasFeedback="true" nzErrorTip="输入服务器">
+      <input nz-input type="text" formControlName="source" >
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item  nzFlex>
+      <nz-form-label nzFor="" nzSpan="3" nzRequired>sa密码</nz-form-label>
+        <nz-form-control nzSpan="5"  nzHasFeedback="true" nzErrorTip="输入密码">
+          <input nz-input type="password"  formControlName="saPassWord" >
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+            <nz-form-control nzSpan="8">
+                    <button nz-button nzType="primary" >保存</button>       
+                    <button nz-button nzType="default" (click)="goBack()">取消</button>       
+            </nz-form-control>
+        </nz-form-item>
+</form>

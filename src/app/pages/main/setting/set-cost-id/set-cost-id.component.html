@@ -1,0 +1,16 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="saveCostId()" class="cost-contain">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="3" nzRequired>费用编号</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="5" nzErrorTip="输入成本费用编号">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="costId">
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control nzSpan="8">
+                <button nz-button nzType="primary" >保存</button>       
+                <button nz-button nzType="default" (click)="goBack()">取消</button>       
+        </nz-form-control>
+    </nz-form-item>
+</form>
