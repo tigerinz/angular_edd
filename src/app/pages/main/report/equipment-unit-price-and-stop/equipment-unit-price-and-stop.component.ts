@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+import { Equipmentunitpriceandstop } from 'src/app/entities/equipmentunitpriceandstop';
 
 @Component({
   selector: 'app-equipment-unit-price-and-stop',
@@ -6,29 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./equipment-unit-price-and-stop.component.less']
 })
 export class EquipmentUnitPriceAndStopComponent implements OnInit {
-  listOfData = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
+  eData: Equipmentunitpriceandstop[];
 
   yearMonth = new Date('2019-09');
-  constructor() { }
+  constructor(private data: DataService) { 
+    this.eData = data.getEquipmentUnitPriceAndStops();
+  }
 
   ngOnInit() {
   }

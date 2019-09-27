@@ -1,12 +1,11 @@
 
 <nz-month-picker [(ngModel)]="period"  nzPlaceHolder="选择月份"></nz-month-picker>
-<button nz-button (click)="checkCostOver()" nzType="primary" [disabled]="!period">检查</button>
 
-<nz-steps [(nzCurrent)]="current" [(nzStatus)]="status">
-  <nz-step nzTitle="检查成本结账" [nzDescription]="''"></nz-step>
-  <nz-step nzTitle="检查固定资产" [nzDescription]="''"></nz-step>
-  <nz-step nzTitle="检查工时日报表" [nzDescription]="''"></nz-step>
-  <nz-step nzTitle="分配固定资产" [nzDescription]="''"></nz-step>
+<nz-steps [(nzCurrent)]="current">
+  <nz-step nzTitle="检查成本结账" [(nzStatus)]="checkCostStatus" [nzDescription]="''"></nz-step>
+  <nz-step nzTitle="检查固定资产"  [(nzStatus)]="checkDepreciationStatus" [nzDescription]="''"></nz-step>
+  <nz-step nzTitle="检查工时日报表" [(nzStatus)]="checkWorkHourDateReportStatus" [nzDescription]="''"></nz-step>
+  <nz-step nzTitle="分配固定资产" [nzStatus]="distributionStatus" [nzDescription]="''"></nz-step>
   
 </nz-steps>
 <div class="steps-content">
@@ -15,11 +14,12 @@
                 <div>
                     </div>
                     <div>
-                        <div *ngIf="checkCostOverResult=='ok'">
+                        <span>检查成本结账结果：</span>
+                        <div *ngIf="checkCostStatus=='finish'">
                             <i nz-icon nzType="check"></i>
                             已结账
                         </div>
-                        <div *ngIf="checkCostOverResult=='no'">
+                        <div *ngIf="checkCostStatus=='error'">
                                  <i nz-icon  nzType="close"></i>
                                  未结账
                         </div>
@@ -29,14 +29,16 @@
         <div *ngSwitchCase="1">
                 <div>
                         
-                        <button nz-button (click)="checkDepreciationOver()" nzType="primary" [disabled]="!period">检查</button>
+                        <!-- <button nz-button (click)="checkDepreciationOver()" nzType="primary" [disabled]="!period">检查</button> -->
                     </div>
                     <div>
-                            <div *ngIf="checkDepreciationOverResult=='ok'">
+                            <span>检查固定资产结果：</span>
+
+                            <div *ngIf="checkDepreciationStatus=='finish'">
                                 <i nz-icon nzType="check"></i>
                                 已结账
                             </div>
-                            <div *ngIf="checkDepreciationOverResult=='no'">
+                            <div *ngIf="checkDepreciationStatus=='error'">
                                      <i nz-icon  nzType="close"></i>
                                      未结账
                             </div>
@@ -46,14 +48,15 @@
         <div *ngSwitchCase="2">
                 <div>
                         
-                        <button nz-button (click)="checkWorkHourDateReport()" nzType="primary" [disabled]="!period">检查</button>
+                        <!-- <button nz-button (click)="checkWorkHourDateReport()" nzType="primary" [disabled]="!period">检查</button> -->
                     </div>
                     <div>
-                            <div *ngIf="checkWorkHourDateReportResult=='ok'">
+                        <span>检查工时日报表结果：</span>
+                        <div *ngIf="checkWorkHourDateReportStatus=='finish'">
                                 <i nz-icon nzType="check"></i>
                                 已结账
                             </div>
-                            <div *ngIf="checkWorkHourDateReportResult=='no'">
+                            <div *ngIf="checkWorkHourDateReportStatus=='error'">
                                      <i nz-icon  nzType="close"></i>
                                      未结账
                             </div>
@@ -63,14 +66,15 @@
         <div *ngSwitchCase="3">
                 <div>
                        
-                        <button nz-button (click)="checkWorkHourDateReport()" nzType="primary" [disabled]="!period">检查</button>
+                        <!-- <button nz-button (click)="checkWorkHourDateReport()" nzType="primary" [disabled]="!period">检查</button> -->
                     </div>
                     <div>
-                            <div *ngIf="checkWorkHourDateReportResult=='ok'">
+                        <span>分配固定资产结果：</span>
+                        <div *ngIf="distributionStatus=='finish'">
                                 <i nz-icon nzType="check"></i>
                                 已结账
                             </div>
-                            <div *ngIf="checkWorkHourDateReportResult=='no'">
+                            <div *ngIf="distributionStatus=='error'">
                                      <i nz-icon  nzType="close"></i>
                                      未结账
                             </div>
@@ -86,10 +90,13 @@
     <button nz-button (click)="pre()" *ngIf="current>0">
         <span>上一步</span>
     </button>
+    <button nz-button (click)="check()" nzType="primary" [disabled]="!period">
+        <span *ngIf="current !== 3">检查</span>
+        <span *ngIf="current === 3">分配</span>
+        
+    </button>
+
     <button nz-button (click)="next()" *ngIf="current<3">
             <span>下一步</span>
         </button>
-        <button nz-button (click)="done()" *ngIf="current===3">
-                <span>分配</span>
-            </button>
 </div>

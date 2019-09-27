@@ -14,22 +14,48 @@
         <button nz-button nzType="primary" (click)="query()">查询</button>
     </div>
 
-    <nz-table #basicTable [nzData]="listOfData">
+    <nz-table #basicTable [nzData]="eData">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Address</th>
-                <th>Action</th>
+                <th>assetName</th>
+                <th>stopHours</th>
+                <th>epsid</th>
+                <th>totalWorkHours</th>
+                <th>epsCreateDate</th>
+                <th>ethid</th>
+                <th>unitPrice</th>
+                <th>eQCode</th>
+                <th>eQId</th>
+                <th>stopPrice</th>
+                <th>assetNum</th>
+                <th>depreciation</th>
+                <th>eQName</th>
+                <th>month</th>
+                <th>year</th>
+                <th>ethCreateDate</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of basicTable.data">
-                <td>{{ data.name }}</td>
-                <td>{{ data.age }}</td>
-                <td>{{ data.address }}</td>
+
+                <th>{{ data.assetName}}</th>
+                <th>{{ data.stopHours}}</th>
+                <th>{{ data.epsid}}</th>
+                <th>{{ data.totalWorkHours}}</th>
+                <th>{{ data.epsCreateDate}}</th>
+                <th>{{ data.ethid}}</th>
+                <th>{{ data.unitPrice}}</th>
+                <th>{{ data.eQCode}}</th>
+                <th>{{ data.eQId}}</th>
+                <th>{{ data.stopPrice}}</th>
+                <th>{{ data.assetNum}}</th>
+                <th>{{ data.depreciation}}</th>
+                <th>{{ data.eQName}}</th>
+                <th>{{ data.month}}</th>
+                <th>{{ data.year}}</th>
+                <th>{{ data.ethCreateDate}}</th>
                 <td>
-                  <a>Action 一 {{ data.name }}</a>
+                  <a>Action 一 {{ data.assetName }}</a>
                   <nz-divider nzType="vertical"></nz-divider>
                   <a>Delete</a>
                 </td>

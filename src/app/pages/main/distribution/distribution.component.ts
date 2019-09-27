@@ -8,53 +8,48 @@ import { Component, OnInit } from '@angular/core';
 export class DistributionComponent implements OnInit {
 
   current = 0;
-  status = 'error';
+  // status = 'error';
   period;
-  checkCostStatus = 'null' ;
-  checkDepreciationStatus = 'null' ;
-  checkWorkHourDateReportStatus = 'null';
-  distributionStatus = 'null';
+  checkCostStatus = 'wait' ;
+  checkDepreciationStatus = 'wait' ;
+  checkWorkHourDateReportStatus = 'wait';
+  distributionStatus = 'wait';
   constructor() { }
 
   ngOnInit() {
   }
 
   pre(): void {
-    this.check();
+    //this.check();
     this.current -= 1;
   }
 
   next(): void {
-   if ( this.check()) {
-     this.current += 1;
-   }
+  //this.check();
+  this.current += 1;
   }
 
   done(): void {
+    //this.check();
     console.log('done');
   }
 
-  check(): boolean {
+  check(): void {
     switch (this.current) {
       case 0 : {
-        if ( this.checkCostOverResult !== 'ok' ) {
-          return false;
-        }
-        return true;
+        this.checkCostOver();
         break;
       }
       case 1 : {
-        if ( this.checkDepreciationOverResult !== 'ok' ) {
-          this.current = 1;
-        }
+        this.checkDepreciationOver();
         break;
       }
       case 2 : {
-        this.current = 0;
+        this.checkWorkHourDateReport();
         break;
       }
       case 3 : {
-        this.current = 0;
+        this.distributionDepreciation();
         break;
       }
        default : {
@@ -65,17 +60,21 @@ export class DistributionComponent implements OnInit {
 
 
   checkCostOver(): void {
-    this.checkCostOverResult = 'ok';
-    this.status = 'finish';
+    this.checkCostStatus = 'finish';
+    //this.status = 'finish';
   }
 
   checkDepreciationOver(): void {
-    this.checkDepreciationOverResult = 'ok';
-    this.status = 'finish';
+    this.checkDepreciationStatus = 'error';
+    //this.status = 'finish';
   }
 
   checkWorkHourDateReport(): void {
-    this.checkWorkHourDateReportResult = 'no';
-    this.status = 'error';
+    this.checkWorkHourDateReportStatus = 'finish';
+    //this.status = 'error';
+  }
+
+  distributionDepreciation(): void {
+    this.distributionStatus = 'error';
   }
 }
