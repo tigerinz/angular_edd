@@ -10,53 +10,49 @@
     </form> -->
     <div class="query">
         <label for="">月份</label>
-        <input nz-input [(ngModel)]="yearMonth" id="yearMonth" name="yearMonth" placeholder="">
+        <nz-select [(ngModel)]="yearMonth" id="yearMonth" name="yearMonth">
+            <nz-option *ngFor="let item of yearMonths" [nzLabel]="item" [nzValue]="item"></nz-option>
+          </nz-select>
         <button nz-button nzType="primary" (click)="query()">查询</button>
     </div>
 
-    <nz-table #basicTable [nzData]="eData">
+    <nz-table #basicTable [nzData]="eData" nzBordered>
             <thead>
               <tr>
-                <th>assetName</th>
-                <th>stopHours</th>
-                <th>epsid</th>
-                <th>totalWorkHours</th>
+                <!-- <th>epsid</th>
                 <th>epsCreateDate</th>
                 <th>ethid</th>
-                <th>unitPrice</th>
-                <th>eQCode</th>
-                <th>eQId</th>
-                <th>stopPrice</th>
-                <th>assetNum</th>
-                <th>depreciation</th>
-                <th>eQName</th>
-                <th>month</th>
-                <th>year</th>
-                <th>ethCreateDate</th>
+                <th>ethCreateDate</th> -->
+                <th>月</th>
+                <th>年</th>
+                <th>固定资产编号</th>
+                <th>固定资产名称</th>
+                <th>设备Id</th>
+                <th>设备编号</th>
+                <th>设备名称</th>
+                <th>折旧金额</th>
+                <th>总工时</th>
+                <th>单价</th>
+                <th>停工时间</th>
+                <th>停工单价</th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let data of basicTable.data">
-
-                <th>{{ data.assetName}}</th>
-                <th>{{ data.stopHours}}</th>
-                <th>{{ data.epsid}}</th>
-                <th>{{ data.totalWorkHours}}</th>
-                <th>{{ data.epsCreateDate}}</th>
-                <th>{{ data.ethid}}</th>
-                <th>{{ data.unitPrice}}</th>
-                <th>{{ data.eQCode}}</th>
-                <th>{{ data.eQId}}</th>
-                <th>{{ data.stopPrice}}</th>
-                <th>{{ data.assetNum}}</th>
-                <th>{{ data.depreciation}}</th>
-                <th>{{ data.eQName}}</th>
-                <th>{{ data.month}}</th>
-                <th>{{ data.year}}</th>
-                <th>{{ data.ethCreateDate}}</th>
+                <td>{{ data.year}}</td>
+                <td>{{ data.month}}</td>
+                <td>{{ data.assetNum}}</td>
+                <td>{{ data.assetName}}</td>
+                <td>{{ data.eQId}}</td>
+                <td>{{ data.eQCode}}</td>
+                <td>{{ data.eQName}}</td>
+                <td>{{ data.depreciation}}</td>
+                <td>{{ data.totalWorkHours}}</td>
+                <td>{{ data.unitPrice}}</td>
+                <td>{{ data.stopHours}}</td>
+                <td>{{ data.stopPrice}}</td>
                 <td>
-                  <a>Action 一 {{ data.assetName }}</a>
-                  <nz-divider nzType="vertical"></nz-divider>
                   <a>Delete</a>
                 </td>
               </tr>

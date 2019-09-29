@@ -10,8 +10,9 @@ import { Equipmentunitpriceandstop } from 'src/app/entities/equipmentunitpricean
 export class EquipmentUnitPriceAndStopComponent implements OnInit {
   eData: Equipmentunitpriceandstop[];
 
-  yearMonth = new Date('2019-09');
-  constructor(private data: DataService) { 
+  yearMonths = ['201901', '201902', '201903', '201904' ];
+  yearMonth;
+  constructor(private data: DataService) {
     this.eData = data.getEquipmentUnitPriceAndStops();
   }
 
