@@ -59,6 +59,17 @@
                  [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
               ></i>
           </span>
+          <span class="header-user">
+              <span nz-dropdown  nzTrigger="click" [nzDropdownMenu]="menu">
+                <i nz-icon nzType="user"></i>
+              </span>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item (click)='openModifyPassowordModal()'>修改密码</li>
+                  <li nz-menu-item>其他</li>
+                  <li nz-menu-item>退出</li>
+                </ul>
+              </nz-dropdown-menu></span>
         </div>
       </nz-header>
       <nz-content>
@@ -68,4 +79,36 @@
       </nz-content>
     </nz-layout>
   </nz-layout>
+
+  <nz-modal [(nzVisible)]="modifyPasswordModalVisible"
+  [nzTitle]="'修改密码'"
+  [nzClosable]="true"
+  [nzWidth]="420"
+  [nzOkText]="'修改'"
+  [nzCancelText]="'取消'"
+  [nzMaskClosable]="true"
+  (nzOnCancel)="closeModifyPasswordModal()"
+  (nzOnOk)="modifyPassword()">
+<form nz-form>
+<nz-form-item>
+<nz-form-control>
+  <input nz-input
+  #oldPassword
+  placeholder="旧密码"
+  name="oldPassword"
+  >
+  <input nz-input
+  #newPassword
+  placeholder="新密码"
+  name="newPassword"
+  >
+  <input nz-input
+  #replPassword
+  placeholder="重复密码"
+  name="oldPassword"
+  >
+</nz-form-control>
+</nz-form-item>
+</form>
+</nz-modal>
   
